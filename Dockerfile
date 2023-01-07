@@ -1,21 +1,16 @@
 # Build dotnet application
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS dotnet-build
 WORKDIR /App
-COPY iConverter/ ./
-COPY iConverter-test/ ./
-RUN dotnet restore "iConverter.csproj"
-RUN dotnet build "iConverter.csproj" -c Release -o /App/build --no-restore
-
-# Publish dotnet application
-FROM dotnet-build AS dotnet-publish
-RUN ls
-RUN dotnet publish "iConverter.csproj" -c Release -o /App/publish
+COPY . ./
+RUN dotnet restore "iConverter/iConverter.csproj"
+RUN dotnet build "iConverter/iConverter.csproj" -c Release -o /App/build --no-restore
+RUN dotnet publish "iConverter/iConverter.csproj" -c Release -o /App/publish --no-build
 RUN ls publish/
 
 # Install npm dependencies and build
 FROM node:19-alpine3.16 AS node-build
 WORKDIR /Node
-COPY ClientApp/ ./
+COPY iConverter/ClientApp/ ./
 RUN npm install
 RUN npm run build
 
