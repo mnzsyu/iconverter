@@ -1,0 +1,33 @@
+name: 'iConverter'
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - '!**.md'
+
+env:
+  APP_FOLDER: 'iConverter/'
+
+jobs:
+  unit-test-server-side:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Install dependencies
+      run: dotnet restore $APP_FOLDER
+    - name: Publish
+      run: dotnet publish $APP_FOLDER -c Release -o out
+    - name: Build
+      run: dotnet build $APP_FOLDER --no-restore
+    - name: Running tests
+      run: dotnet test $APP_FOLDER
