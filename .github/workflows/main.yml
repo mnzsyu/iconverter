@@ -123,9 +123,11 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
     
-    - name: List files
-      run: ls
-
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition service \
+        --query taskDefinition > task-definition.json
+  
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
