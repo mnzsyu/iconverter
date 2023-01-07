@@ -1,4 +1,4 @@
-name: 'iConverter'
+name: 'Test-Build-Deploy-to-dev'
 
 on:
   push:
