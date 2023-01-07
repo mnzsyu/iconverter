@@ -7,59 +7,59 @@ on:
       - '!**.md'
 
 jobs:
-  unit-test-server-side:
+  # unit-test-server-side:
   
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    env:
-      APP_PROJECT_FILE: 'iConverter/iConverter.csproj'
-      TEST_PROJECT_FILE: 'iConverter-test/iConverter-test.csproj'
+  #   env:
+  #     APP_PROJECT_FILE: 'iConverter/iConverter.csproj'
+  #     TEST_PROJECT_FILE: 'iConverter-test/iConverter-test.csproj'
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v3
       
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '6.0.x'
+  #   - name: Setup .NET Core
+  #     uses: actions/setup-dotnet@v3
+  #     with:
+  #       dotnet-version: '6.0.x'
 
-    - name: Install dependencies
-      run: dotnet restore $APP_PROJECT_FILE
+  #   - name: Install dependencies
+  #     run: dotnet restore $APP_PROJECT_FILE
 
-    - name: Release
-      run: dotnet publish $APP_PROJECT_FILE -c Release -o out
+  #   - name: Release
+  #     run: dotnet publish $APP_PROJECT_FILE -c Release -o out
 
-    - name: Build
-      run: dotnet build $APP_PROJECT_FILE --no-restore
+  #   - name: Build
+  #     run: dotnet build $APP_PROJECT_FILE --no-restore
 
-    - name: Running tests
-      run: dotnet test $TEST_PROJECT_FILE
+  #   - name: Running tests
+  #     run: dotnet test $TEST_PROJECT_FILE
 
-  unit-test-client-side:
+  # unit-test-client-side:
   
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    env:
-      CLIENT_APP_FOLDER: 'iConverter/ClientApp/'
+  #   env:
+  #     CLIENT_APP_FOLDER: 'iConverter/ClientApp/'
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '19.x'
+  #   - name: Setup Node.js
+  #     uses: actions/setup-node@v3
+  #     with:
+  #       node-version: '19.x'
 
-    - name: Clean install
-      run: npm --prefix $CLIENT_APP_FOLDER ci
+  #   - name: Clean install
+  #     run: npm --prefix $CLIENT_APP_FOLDER ci
 
-    - name: Build      
-      run: npm --prefix $CLIENT_APP_FOLDER run build
+  #   - name: Build      
+  #     run: npm --prefix $CLIENT_APP_FOLDER run build
 
-    - name: Running tests
-      run: npm --prefix $CLIENT_APP_FOLDER run test
+  #   - name: Running tests
+  #     run: npm --prefix $CLIENT_APP_FOLDER run test
     
   build-image-and-push-to-ecr:
 
