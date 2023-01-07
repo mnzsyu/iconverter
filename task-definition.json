@@ -17,9 +17,9 @@
         "entryPoint": [],
         "portMappings": [
           {
-            "hostPort": 5188,
+            "hostPort": 80,
             "protocol": "tcp",
-            "containerPort": 5188
+            "containerPort": 80
           }
         ],
         "command": [],
