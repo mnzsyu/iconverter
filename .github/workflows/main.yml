@@ -36,8 +36,8 @@ jobs:
     - name: Build
       run: dotnet build 'iConverter/iConverter.csproj' -c Release --no-restore
 
-    - name: Release
-      run: dotnet publish 'iConverter/iConverter.csproj'-c Release
+    # - name: Release
+    #   run: dotnet publish 'iConverter/iConverter.csproj'-c Release
 
     - name: List ClientApp
       run: ls iConverter/ClientApp/
