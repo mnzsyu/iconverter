@@ -1,0 +1,48 @@
+﻿.panel {
+    display: grid;
+    gap: 4px 8px;
+    grid-auto-flow: column;
+    grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) auto minmax(100px, 1fr);
+    grid-template-rows: auto auto;
+    width: 75%;
+    margin: auto;
+}
+
+.paneldiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown {
+    width: 100%;
+}
+
+label {
+    display: flex;
+    width: auto;
+}
+
+.panellabel {
+    font-size: 18px;
+}
+
+input {
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    padding-top: 0.5rem;
+    padding-bottom: 0.6rem;
+    padding-left: 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.3rem;
+    width: 100%;
+}
+
+.btn-secondary {
+    font-size: 10px;
+    width: 40px;
+}
+
+.main {
+    padding-top: 50px;
+    min-height: 300px;
+}

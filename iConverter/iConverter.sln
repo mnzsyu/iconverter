@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iConverter", "iConverter.csproj", "{4D57DD95-0427-4D13-8234-8EACB753A0A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iConverter-test", "..\iConverter-test\iConverter-test.csproj", "{B6342051-4CA5-4B15-B45D-85B2D56720DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4D57DD95-0427-4D13-8234-8EACB753A0A8} = {4D57DD95-0427-4D13-8234-8EACB753A0A8}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D57DD95-0427-4D13-8234-8EACB753A0A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D57DD95-0427-4D13-8234-8EACB753A0A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D57DD95-0427-4D13-8234-8EACB753A0A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D57DD95-0427-4D13-8234-8EACB753A0A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6342051-4CA5-4B15-B45D-85B2D56720DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6342051-4CA5-4B15-B45D-85B2D56720DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6342051-4CA5-4B15-B45D-85B2D56720DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6342051-4CA5-4B15-B45D-85B2D56720DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F5B3F02-30FD-4FDD-BF7F-4F24F2D57BD7}
+	EndGlobalSection
+EndGlobal
