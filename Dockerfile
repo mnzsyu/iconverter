@@ -1,7 +1,6 @@
 # Build dotnet application
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS dotnet-build
 WORKDIR /App
-
 COPY . ./
 RUN dotnet restore "iConverter/iConverter.csproj"
 RUN dotnet build "iConverter/iConverter.csproj" -c Release -o /App/build
