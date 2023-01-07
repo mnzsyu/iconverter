@@ -26,7 +26,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore $APP_FOLDER
     - name: Publish
-      run: dotnet publish $APP_FOLDER -c Release -o out
+      run: dotnet publish $APP_FOLDER -c Release -r "linux-x64" -o out
     - name: Build
       run: dotnet build $APP_FOLDER --no-restore
     - name: Running tests
