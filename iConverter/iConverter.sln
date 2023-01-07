@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iConverter", "iConverter.csproj", "{4D57DD95-0427-4D13-8234-8EACB753A0A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iConverter-test", "iConverter-test.csproj", "{B6342051-4CA5-4B15-B45D-85B2D56720DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iConverter-test", "..\iConverter-test\iConverter-test.csproj", "{B6342051-4CA5-4B15-B45D-85B2D56720DF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4D57DD95-0427-4D13-8234-8EACB753A0A8} = {4D57DD95-0427-4D13-8234-8EACB753A0A8}
 	EndProjectSection
