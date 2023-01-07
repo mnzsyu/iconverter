@@ -18,8 +18,9 @@ RUN npm run build
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
+ENV ASPNETCORE_URLS=http://+:5188
 WORKDIR /App
 COPY --from=dotnet-publish /App/publish .
 COPY --from=node-build /Node/build .
-EXPOSE 80
+EXPOSE 5188
 ENTRYPOINT ["dotnet", "iConverter.dll"]
