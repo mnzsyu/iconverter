@@ -8,7 +8,7 @@ RUN dotnet build "iConverter/iConverter.csproj" -c Release -o /App/build
 # Publish dotnet application
 FROM dotnet-build AS dotnet-publish
 RUN ls
-RUN dotnet publish "iConverter/iConverter.csproj" -c Release -o /App/publish
+RUN dotnet publish "iConverter/iConverter.csproj" -c Release -o /App/publish --no-build
 RUN ls publish/
 
 # Install npm dependencies and build
