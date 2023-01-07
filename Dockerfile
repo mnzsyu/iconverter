@@ -2,6 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS dotnet-build
 WORKDIR /App
 COPY . ./
+RUN ls
 RUN dotnet restore "iConverter/iConverter.csproj"
 RUN dotnet build "iConverter/iConverter.csproj" -c Release -o build/
 RUN dotnet publish "iConverter/iConverter.csproj" -c Release -o publish/
