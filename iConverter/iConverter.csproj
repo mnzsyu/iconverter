@@ -40,13 +40,10 @@
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
 
     <!-- Include the newly-built files in the publish output -->
-    <ItemGroup>
-      <DistFiles Include="$(SpaRoot)build\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      </ResolvedFileToPublish>
-    </ItemGroup>
+  <ItemGroup>
+      <Content Include="wwwroot\**\*">
+        <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+      </Content>
+  </ItemGroup>
   </Target>
 </Project>
