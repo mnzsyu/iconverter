@@ -3,14 +3,18 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS dotnet-build
 WORKDIR /App
 COPY . ./
 RUN dotnet restore "iConverter/iConverter.csproj"
-RUN dotnet build "iConverter/iConverter.csproj" -c Release --no-restore
+RUN dotnet build "iConverter/iConverter.csproj" -c Release -o /App/build
+
+# Publish dotnet application
+FROM dotnet-build AS dotnet-publish
+RUN ls
 RUN dotnet publish "iConverter/iConverter.csproj" -c Release -o /App/publish --no-build
 RUN ls publish/
 
 # Install npm dependencies and build
 FROM node:19-alpine3.16 AS node-build
 WORKDIR /Node
-COPY iConverter/ClientApp/ ./
+COPY iConverter/ClientApp /Node
 RUN npm install
 RUN npm run build
 
