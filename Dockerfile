@@ -9,13 +9,13 @@ RUN dotnet build "iConverter.csproj" -c Release -o /App/build --no-restore
 # Publish dotnet application
 FROM dotnet-build AS dotnet-publish
 RUN ls
-RUN dotnet publish -c Release -o /App/publish --no-build
+RUN dotnet publish "iConverter.csproj" -c Release -o /App/publish
 RUN ls publish/
 
 # Install npm dependencies and build
 FROM node:19-alpine3.16 AS node-build
 WORKDIR /Node
-COPY iConverter/ClientApp /Node
+COPY ClientApp/ ./
 RUN npm install
 RUN npm run build
 
