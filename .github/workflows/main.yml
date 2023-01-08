@@ -97,8 +97,8 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       id: build
       run: |
-        docker build -t $IMAGE .
-        docker push $IMAGE
+        docker build -t ${{ env.IMAGE }} .
+        docker push ${{ env.IMAGE }}
 
   # Deploy-to-dev:
   #   runs-on: ubuntu-latest
