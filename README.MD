@@ -65,3 +65,6 @@
     * Сохранить образ в репозиторий:  
     docker push ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${REPO}:initial
 * [Terraform step-2](./Terraform/step-2/) - создание компонентов инфраструктуры (VPC, сети и их компоненты, security-группы, балансировщики, кластеры, контейнеры). Тестовая и промышленная инфраструктуры разнесены по разным VPC
+
+#### Демонстрация решения:  
+[![Youtube video](./Screenshots/Screenshot5.png)](https://youtu.be/1T8WJEx9B_8)
