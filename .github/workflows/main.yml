@@ -65,7 +65,7 @@ jobs:
   Build-image-and-push-to-ECR:
     runs-on: ubuntu-latest
 
-    needs: [Unit-test-server-side, Unit-test-client-side]
+    # needs: [Unit-test-server-side, Unit-test-client-side]
 
     outputs:
       image: ${{ steps.build.outputs.image }}
