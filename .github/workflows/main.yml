@@ -25,7 +25,9 @@ jobs:
 
     steps:
     - name: Use variable
-      run: echo ${{ needs.Testjob.outputs.image }}
+      env:
+        image: ${{ needs.Testjob.outputs.image }}
+      run: echo $image
 
   # unit-test-server-side:
   
