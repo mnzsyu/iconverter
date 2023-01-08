@@ -5,16 +5,8 @@
       {
         "dnsSearchDomains": null,
         "environmentFiles": null,
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "secretOptions": null,
-          "options": {
-            "awslogs-group": "/ecs/task-definition",
-            "awslogs-region": "eu-west-3",
-            "awslogs-stream-prefix": "ecs"
-          }
-        },
-        "entryPoint": [],
+        "logConfiguration": null,
+        "entryPoint": null,
         "portMappings": [
           {
             "hostPort": 5188,
