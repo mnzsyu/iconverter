@@ -13,6 +13,7 @@ jobs:
     outputs:
       image: ${{ steps.savevar.outputs.image }}
 
+    steps:
     - name: Save variable
       id: savevar
       run: echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
