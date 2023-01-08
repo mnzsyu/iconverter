@@ -136,7 +136,7 @@ jobs:
   Deploy-to-prod:
     runs-on: ubuntu-latest
 
-    needs: Deploy-to-dev
+    needs: [Build-image-and-push-to-ECR,Deploy-to-dev]
 
     steps:
     - name: Checkout
