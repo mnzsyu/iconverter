@@ -16,7 +16,7 @@ env:
   TASK_DEFINITION: task-definition.json
   MAJOR_APP_VERSION: v2
   RUN_NUMBER: ${{ github.run_number }}
-  IMAGE: ${{ secrets.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.MAJOR_APP_VERSION }}.${{ env.RUN_NUMBER }}
+  IMAGE: ${{ secrets.ECR_REGISTRY }}/$ECR_REPOSITORY:$MAJOR_APP_VERSION.$RUN_NUMBER
 
 jobs:
   # Unit-test-server-side:
