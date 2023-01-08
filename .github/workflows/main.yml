@@ -7,7 +7,13 @@ on:
       - '!**.md'
 
 env:
+  AWS_REGION: us-east-1
   ECR_REPOSITORY: iconverter
+  CONTAINER_NAME: icontainer
+  SERVICE_NAME: iconverter
+  CLUSTER_NAME_DEV: dev
+  CLUSTER_NAME_PROD: prod
+  TASK_DEFINITION: task-definition.json
 
 jobs:
   # Unit-test-server-side:
@@ -67,9 +73,6 @@ jobs:
 
     # needs: [Unit-test-server-side, Unit-test-client-side]
 
-    outputs:
-      image: ${{ steps.build.outputs.image }}
-
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -79,7 +82,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+        aws-region: ${{ env.AWS_REGION }}
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -94,46 +97,45 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-  # Deploy-to-dev:
-  #   runs-on: ubuntu-latest
+  Deploy-to-dev:
+    runs-on: ubuntu-latest
 
-  #   needs: Build-image-and-push-to-ECR
+    needs: Build-image-and-push-to-ECR
 
-  #   environment:
-  #     name: development
+    environment:
+      name: development
 
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v3
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
 
-  #   - name: Configure AWS credentials
-  #     uses: aws-actions/configure-aws-credentials@v1-node16
-  #     with:
-  #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #       aws-region: us-east-1
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1-node16
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
     
-  #   - name: Login to Amazon ECR
-  #     id: login-ecr
-  #     uses: aws-actions/amazon-ecr-login@v1
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
     
-  #   - name: Fill in the new image ID in the Amazon ECS task definition
-  #     id: task-def
-  #     uses: aws-actions/amazon-ecs-render-task-definition@v1
-  #     with:
-  #       task-definition: task-definition.json
-  #       container-name: icontainer
-  #       image: ${{ needs.Build-image-and-push-to-ECR.outputs.image }}
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ env.TASK_DEFINITION }}
+        container-name: ${{ env.CONTAINER_NAME }}
+        image: ${{ secrets.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:v2.${{ github.run_number }}
 
-  #   - name: Deploy Amazon ECS task definition
-  #     uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-  #     with:
-  #       task-definition: ${{ steps.task-def.outputs.task-definition }}
-  #       service: iconverter
-  #       cluster: dev
-  #       wait-for-service-stability: true
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ env.SERVICE_NAME }}
+        cluster: ${{ env.CLUSTER_NAME_DEV }}
+        wait-for-service-stability: true
 
   # Deploy-to-prod:
   #   runs-on: ubuntu-latest
