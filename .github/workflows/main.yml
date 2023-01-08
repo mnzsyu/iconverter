@@ -106,12 +106,6 @@ jobs:
     environment:
       name: development
 
-    env:
-      IMAGE_NAME: ${{ needs.build-image-and-push-to-ecr.outputs.image }}
-      CONTAINER_NAME: icontainer
-      SERVICE_NAME: iconverter
-      CLUSTER_NAME: dev
-
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -129,11 +123,14 @@ jobs:
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
+      env: 
+        IMAGE_NAME: ${{ needs.build-image-and-push-to-ecr.outputs.image }}
+        CONTAINER_NAME: icontainer
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: "$CONTAINER_NAME"
-        image: "$IMAGE_NAME"
+        container-name: $CONTAINER_NAME
+        image: ${{ IMAGE_NAME }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
