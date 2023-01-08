@@ -54,7 +54,7 @@
         "dockerLabels": null,
         "systemControls": null,
         "privileged": null,
-        "name": "iconverter-icontainer"
+        "name": "iconverter-container"
       }
     ],
     "placementConstraints": [],
