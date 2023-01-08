@@ -7,14 +7,14 @@ on:
       - '!**.MD'
 
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: eu-west-3
   ECR_REPOSITORY: iconverter
-  CONTAINER_NAME: icontainer
   SERVICE_NAME: iconverter
+  CONTAINER_NAME: iconverter-container
   CLUSTER_NAME_DEV: dev
   CLUSTER_NAME_PROD: prod
   TASK_DEFINITION: task-definition.json
-  MAJOR_APP_VERSION: v2
+  MAJOR_APP_VERSION: v1
   MINOR_APP_VERSION: ${{ github.run_number }}
 
 jobs:

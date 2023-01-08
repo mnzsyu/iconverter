@@ -10,7 +10,7 @@
           "secretOptions": null,
           "options": {
             "awslogs-group": "/ecs/task-definition",
-            "awslogs-region": "us-east-1",
+            "awslogs-region": "eu-west-3",
             "awslogs-stream-prefix": "ecs"
           }
         },
@@ -37,7 +37,7 @@
         "memoryReservation": null,
         "volumesFrom": [],
         "stopTimeout": null,
-        "image": "824569003070.dkr.ecr.us-east-1.amazonaws.com/iconverter:v1.18",
+        "image": "824569003070.dkr.ecr.eu-west-3.amazonaws.com/iconverter:initial",
         "startTimeout": null,
         "firelensConfiguration": null,
         "dependsOn": null,
@@ -54,13 +54,13 @@
         "dockerLabels": null,
         "systemControls": null,
         "privileged": null,
-        "name": "icontainer"
+        "name": "iconverter-icontainer"
       }
     ],
     "placementConstraints": [],
     "memory": "512",
     "taskRoleArn": null,
-    "family": "task-definition",
+    "family": "iconverter",
     "pidMode": null,
     "requiresCompatibilities": [
       "FARGATE"
