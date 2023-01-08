@@ -44,27 +44,31 @@
 * [Terraform step-1](./Terraform/step-1/) - создание репозитория в ECR   
 * Push начального образа в ECR  
     * Для создания task definition в ECR необходимо иметь в репозитории начальный образ. Этот образ будет использоваться только при создании инфраструктуры. Чтобы сохранить начальный образ в репозитории, необходимо:  
-    * Задать значения в bash для переменных:  
-    ```
-    ACCOUNT='824569003070' \
-    REGION='eu-west-3' \
-    REPO='iconverter'
-    ```
-    * Собрать образ приложения локально (хотя можно использовать абсолютно любой образ):  
-    ```
-    docker build -t ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${REPO}:initial .
-    ```
-    * Авторизовать docker в aws:  
-    ```
-    aws ecr get-login-password \
-        --region ${REGION} \
-    | docker login \
-        --username AWS \
-        --password-stdin ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com
-    ```
-    * Сохранить образ в репозиторий:  
-    docker push ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${REPO}:initial
+        * Задать значения в bash для переменных:  
+        ```
+        ACCOUNT='824569003070' \
+        REGION='eu-west-3' \
+        REPO='iconverter'
+        ```
+        * Собрать образ приложения локально (хотя можно использовать абсолютно любой образ):  
+        ```
+        docker build -t ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${REPO}:initial .
+        ```
+        * Авторизовать docker в aws:  
+        ```
+        aws ecr get-login-password \
+            --region ${REGION} \
+        | docker login \
+            --username AWS \
+            --password-stdin ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com
+        ```
+        * Сохранить образ в репозиторий:  
+        ```
+        docker push ${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${REPO}:initial
+        ```
+
 * [Terraform step-2](./Terraform/step-2/) - создание компонентов инфраструктуры (VPC, сети и их компоненты, security-группы, балансировщики, кластеры, контейнеры). Тестовая и промышленная инфраструктуры разнесены по разным VPC
 
 #### Демонстрация решения:  
+(Видео по клику на картинку)
 [![Youtube video](./Screenshots/Screenshot5.png)](https://youtu.be/1T8WJEx9B_8)
